@@ -39,7 +39,7 @@ namespace BigOExercises
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-
+            txtOutput.Clear();
         }
 
         private void grpInput_Enter(object sender, EventArgs e)
