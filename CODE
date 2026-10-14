@@ -1,0 +1,361 @@
+namespace BigOExercises
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlHeader_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblInput2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpInput_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnON2_Click(object sender, EventArgs e)
+        {
+            cmbExample.Items.Clear();
+            cmbExample.Items.Add("1. Compare Every Pair");
+            cmbExample.Items.Add("2. Two Loops");
+            cmbExample.Items.Add("3. Compare Students");
+            cmbExample.SelectedIndex = 0;
+        }
+
+        private void btnO1_Click(object sender, EventArgs e)
+        {
+            cmbExample.Items.Clear();
+            cmbExample.Items.Add("1. Direct Array Access");
+            cmbExample.Items.Add("2. Add Two Numbers");
+            cmbExample.Items.Add("3. Get the First Item");
+            cmbExample.SelectedIndex = 0;
+        }
+
+        private void btnOLogN_Click(object sender, EventArgs e)
+        {
+            cmbExample.Items.Clear();
+            cmbExample.Items.Add("1. Binary Search");
+            cmbExample.Items.Add("2. Keep Dividing by 2");
+            cmbExample.Items.Add("3. Binary-Search-Style Guessing");
+            cmbExample.SelectedIndex = 0;
+        }
+
+        private void btnON_Click(object sender, EventArgs e)
+        {
+            cmbExample.Items.Clear();
+            cmbExample.Items.Add("1. Print Every Number");
+            cmbExample.Items.Add("2. Find a Name");
+            cmbExample.Items.Add("3. Calculate the Total");
+            cmbExample.SelectedIndex = 0;
+        }
+
+
+        private void btnO2N_Click(object sender, EventArgs e)
+        {
+            cmbExample.Items.Clear();
+            cmbExample.Items.Add("1. Light Switches");
+            cmbExample.Items.Add("2. Coin Toss");
+            cmbExample.Items.Add("3. Password Choices");
+            cmbExample.SelectedIndex = 0;
+        }
+
+        private void cmbExample_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbExample.SelectedIndex == 0)
+            {
+                lblExampleTitle.Text = "Example 1: " + cmbExample.Text;
+            }
+            else if (cmbExample.SelectedIndex == 1)
+            {
+                lblExampleTitle.Text = "Example 2: " + cmbExample.Text;
+            }
+            else if (cmbExample.SelectedIndex == 2)
+            {
+                lblExampleTitle.Text = "Example 3: " + cmbExample.Text;
+            }
+        }
+
+        private void grpOutput_Click(object sender, EventArgs e)
+        {
+            txtOutput.Clear();
+
+            // O(1) - CONSTANT TIME
+
+            if (cmbExample.Text.Contains("Direct Array Access"))
+            {
+                int[] numbers = { 10, 20, 30, 40, 50 };
+                int answer = numbers[2];
+                txtOutput.Text = answer.ToString();
+            }
+            else if (cmbExample.Text.Contains("Add Two Numbers"))
+            {
+                int a = 10;
+                int b = 20;
+                txtOutput.Text = (a + b).ToString();
+            }
+            else if (cmbExample.Text.Contains("Get the First Item"))
+            {
+                string[] fruits = { "Apple", "Banana", "Mango" };
+                txtOutput.Text = fruits[0];
+            }
+
+            // O(log n) - LOGARITHMIC TIME
+
+            else if (cmbExample.Text.Contains("Binary Search"))
+            {
+                int[] numbers = { 10, 20, 30, 40, 50, 60, 70 };
+                int target = 50;
+                int left = 0;
+                int right = numbers.Length - 1;
+                int steps = 0;
+                bool found = false;
+
+                while (left <= right)
+                {
+                    steps++;
+                    int mid = (left + right) / 2;
+
+                    txtOutput.Text += "Checking: " + numbers[mid] + "\r\n";
+
+                    if (numbers[mid] == target)
+                    {
+                        found = true;
+                        break;
+                    }
+                    else if (numbers[mid] < target)
+                    {
+                        left = mid + 1;
+                    }
+                    else
+                    {
+                        right = mid - 1;
+                    }
+                }
+
+                txtOutput.Text += found ? "Found 50!" : "Not found.";
+                txtOutput.Text += "\r\nSteps: " + steps;
+            }
+            else if (cmbExample.Text.Contains("Keep Dividing by 2"))
+            {
+                int number = 64;
+
+                while (number > 1)
+                {
+                    txtOutput.Text += number + "\r\n";
+                    number = number / 2;
+                }
+
+                txtOutput.Text += "1";
+            }
+            else if (cmbExample.Text.Contains("Guessing"))
+            {
+                int low = 1;
+                int high = 100;
+                int target = 73;
+                int guesses = 0;
+
+                while (low <= high)
+                {
+                    int guess = (low + high) / 2;
+                    guesses++;
+
+                    txtOutput.Text += "Guess: " + guess + "\r\n";
+
+                    if (guess == target)
+                        break;
+                    else if (guess < target)
+                        low = guess + 1;
+                    else
+                        high = guess - 1;
+                }
+
+                txtOutput.Text += "Found 73 in " + guesses + " guesses.";
+            }
+
+            // O(n) - LINEAR TIME
+
+            else if (cmbExample.Text.Contains("Print Every Number"))
+            {
+                int[] numbers = { 10, 20, 30, 40, 50 };
+
+                foreach (int number in numbers)
+                    txtOutput.Text += number + "\r\n";
+            }
+            else if (cmbExample.Text.Contains("Find a Name"))
+            {
+                string[] names = { "Adriel", "Joshua", "Maria", "Ben" };
+                string target = "Maria";
+                bool found = false;
+
+                foreach (string name in names)
+                {
+                    txtOutput.Text += "Checking: " + name + "\r\n";
+
+                    if (name == target)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                txtOutput.Text += found ? "Name found!" : "Name not found.";
+            }
+            else if (cmbExample.Text.Contains("Calculate the Total"))
+            {
+                int[] numbers = { 10, 20, 30, 40, 50 };
+                int total = 0;
+
+                foreach (int number in numbers)
+                    total += number;
+
+                txtOutput.Text = "Total: " + total;
+            }
+
+            // O(n^2) - QUADRATIC TIME
+
+            else if (cmbExample.Text.Contains("Compare Every Pair"))
+            {
+                int[] numbers = { 1, 2, 3 };
+
+                foreach (int first in numbers)
+                {
+                    foreach (int second in numbers)
+                    {
+                        txtOutput.Text += first + " and " + second + "\r\n";
+                    }
+                }
+            }
+            else if (cmbExample.Text.Contains("Two Loops"))
+            {
+                for (int i = 1; i <= 3; i++)
+                {
+                    for (int j = 1; j <= 3; j++)
+                    {
+                        txtOutput.Text += i + ", " + j + "\r\n";
+                    }
+                }
+            }
+            else if (cmbExample.Text.Contains("Compare Students"))
+            {
+                string[] students = { "Adriel", "Joshua", "Maria" };
+
+                for (int i = 0; i < students.Length; i++)
+                {
+                    for (int j = i + 1; j < students.Length; j++)
+                    {
+                        txtOutput.Text += students[i] + " vs. "
+                            + students[j] + "\r\n";
+                    }
+                }
+            }
+
+            // O(2^n) - EXPONENTIAL TIME
+
+            else if (cmbExample.Text.Contains("Light Switches"))
+            {
+                int n = 3;
+                int combinations = 1;
+
+                for (int i = 0; i < n; i++)
+                    combinations *= 2;
+
+                txtOutput.Text = "Light switches: " + n;
+                txtOutput.Text += "\r\nPossible combinations: "
+                    + combinations;
+            }
+            else if (cmbExample.Text.Contains("Coin Toss"))
+            {
+                string[] results = { "H", "T" };
+                int n = 3;
+                int combinations = 1;
+
+                for (int i = 0; i < n; i++)
+                    combinations *= 2;
+
+                for (int i = 0; i < combinations; i++)
+                {
+                    string outcome = "";
+
+                    for (int j = n - 1; j >= 0; j--)
+                    {
+                        int bit = (i / (int)Math.Pow(2, j)) % 2;
+                        outcome += results[bit];
+                    }
+
+                    txtOutput.Text += outcome + "\r\n";
+                }
+            }
+            else if (cmbExample.Text.Contains("Password Choices"))
+            {
+                int characters = 2;
+                int length = 4;
+                int combinations = 1;
+
+                for (int i = 0; i < length; i++)
+                    combinations *= characters;
+
+                txtOutput.Text = "Characters available: "
+                    + characters;
+                txtOutput.Text += "\r\nPassword length: " + length;
+                txtOutput.Text += "\r\nPossible passwords: "
+                    + combinations;
+            }
+            else
+            {
+                txtOutput.Text = "Please select an example first.";
+            }
+
+
+
+
+
+
+
+        }
+
+        private void txtOutput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblExampleTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+    
